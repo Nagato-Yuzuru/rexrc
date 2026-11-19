@@ -1,0 +1,35 @@
+{
+  $schema: "https://docs.renovatebot.com/renovate-schema.json",
+  extends: ["config:recommended", "helpers:pinGitHubActionDigestsToSemver"],
+  // A new release must be 7 days old before an update branch exists.
+  minimumReleaseAge: "7 days",
+  internalChecksFilter: "strict",
+  timezone: "Asia/Taipei",
+  // A security update skips the 7-day wait and goes to the lowest fixed
+  // version. Without the wait, a compromised release is not filtered out,
+  // so a person reviews each one. It does not join the weekly group.
+  vulnerabilityAlerts: {
+    automerge: false,
+    labels: ["security"],
+  },
+  // The default patterns do not list the env-specific config CI reads.
+  mise: {
+    managerFilePatterns: ["/(^|/)mise\\.ci\\.toml$/"],
+  },
+  packageRules: [
+    {
+      // One PR each week holds all non-major updates, so that CI runs once
+      // for them.
+      matchUpdateTypes: ["minor", "patch", "digest", "pinDigest"],
+      groupName: "non-major dependencies",
+      schedule: ["before 6am on monday"],
+      automerge: true,
+    },
+    {
+      // Rex runs its config on Lua 5.1.
+      matchManagers: ["mise"],
+      matchDepNames: ["lua", "vfox:jdx/vfox-lua"],
+      allowedVersions: "/^5\\.1\\./",
+    },
+  ],
+}

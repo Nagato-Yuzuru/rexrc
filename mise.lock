@@ -36,15 +36,14 @@ url = "https://github.com/jdx/jactionlint/releases/download/v2.5.0/jactionlint_2
 signer = "sigstore-oidc:https://github.com/jdx/jactionlint/.github/workflows/release.yaml"
 repository_ids = { repository = "1404951382" }
 
-[[tools.lua]]
-version = "5.1.5"
-backend = "asdf:lua"
-specifiers = ["5.1.5"]
-
 [[tools.oxfmt]]
 version = "0.71.0"
+aube = { path = ".mise/locks/oxfmt/0.71.0", digest = "sha256:2b7bfb8c20b448ab9b5549e2e0a43049a897d50d995103408bbba2b0add2bcf0" }
 backend = "npm:oxfmt"
 specifiers = ["0.71.0"]
+
+[tools.oxfmt.provenance]
+repository = "github.com/oxc-project/oxc"
 
 [[tools.prek]]
 version = "0.5.4"
@@ -128,3 +127,16 @@ url_api = "https://api.github.com/repos/tamasfe/taplo/releases/assets/257322600"
 checksum = "sha256:713734314c3e71894b9e77513c5349835eefbd52908445a0d73b0c7dc469347d"
 url = "https://github.com/tamasfe/taplo/releases/download/0.10.0/taplo-darwin-aarch64.gz"
 url_api = "https://api.github.com/repos/tamasfe/taplo/releases/assets/257323110"
+
+[[tools."vfox:jdx/vfox-lua"]]
+version = "5.1.5"
+backend = "vfox:jdx/vfox-lua"
+specifiers = ["5.1.5"]
+
+[tools."vfox:jdx/vfox-lua"."platforms.linux-x64"]
+checksum = "sha256:2640fc56a795f29d28ef15e13c34a47e223960b0240e8cb0a82d9b0738695333"
+url = "https://www.lua.org/ftp/lua-5.1.5.tar.gz"
+
+[tools."vfox:jdx/vfox-lua"."platforms.macos-arm64"]
+checksum = "sha256:2640fc56a795f29d28ef15e13c34a47e223960b0240e8cb0a82d9b0738695333"
+url = "https://www.lua.org/ftp/lua-5.1.5.tar.gz"
