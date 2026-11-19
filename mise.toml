@@ -1,0 +1,29 @@
+[tools]
+prek = "0.5.4"
+stylua = "2.5.2"
+"aqua:Kampfkarren/selene" = "0.31.0"
+taplo = "0.10.0"
+oxfmt = "0.71.0"
+ruff = "0.17.4"
+lua = "5.1.5"
+jactionlint = "2.5.0"
+shellcheck = "0.11.0"
+
+[tasks.setup-hooks]
+description = "Install prek-managed git hooks (run once after clone)"
+run = "prek install"
+
+[tasks.lint]
+description = "Run every hook over the whole repo"
+run = "prek run --all-files"
+
+[tasks.test]
+description = "Unit tests: pure Lua and Python logic, no Rex needed (what CI runs)"
+run = [
+  "lua tests/unit/layout_tree_test.lua",
+  "uv run tests/unit/test_layout_picker.py",
+]
+
+[tasks.smoke]
+description = "End-to-end test against the running Rex (run inside a Rex terminal)"
+run = "python3 tests/smoke.py"

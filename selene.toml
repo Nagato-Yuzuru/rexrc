@@ -1,0 +1,5 @@
+std = "rex"
+
+[rules]
+# stylua's collapse_simple_statement = "FunctionOnly" puts one-statement functions on one line.
+multiple_statements = "allow"

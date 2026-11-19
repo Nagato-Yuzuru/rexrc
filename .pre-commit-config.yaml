@@ -1,0 +1,62 @@
+# Hooks run by prek; mise.toml pins every tool they call.
+#   mise run setup-hooks   install the git hook (once per clone)
+#   mise run lint          run every hook over the whole repo
+repos:
+  - repo: builtin
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: mixed-line-ending
+        args: [--fix=lf]
+      - id: check-merge-conflict
+      - id: check-case-conflict
+      - id: check-added-large-files
+      - id: check-yaml
+      - id: check-json
+      - id: check-toml
+      - id: detect-private-key
+      - id: fix-byte-order-marker
+      - id: check-executables-have-shebangs
+  - repo: local
+    hooks:
+      - id: stylua
+        name: stylua (Lua format)
+        language: system
+        entry: mise exec -- stylua
+        types: [lua]
+      - id: selene
+        name: selene (Lua lint)
+        language: system
+        entry: mise exec -- selene
+        types: [lua]
+      - id: ruff-format
+        name: ruff format (Python)
+        language: system
+        entry: mise exec -- ruff format
+        types: [python]
+      - id: ruff-check
+        name: ruff check (Python lint)
+        language: system
+        entry: mise exec -- ruff check --fix
+        types: [python]
+      - id: zsh-syntax
+        name: zsh -n (zsh syntax)
+        language: system
+        entry: zsh -n
+        files: \.zsh$
+      - id: jactionlint
+        name: jactionlint (GitHub Actions lint)
+        language: system
+        entry: mise exec -- jactionlint
+        files: ^\.github/
+        pass_filenames: false
+      - id: taplo
+        name: taplo (TOML format)
+        language: system
+        entry: mise exec -- taplo fmt
+        types: [toml]
+      - id: oxfmt
+        name: oxfmt (JSON/YAML/Markdown format)
+        language: system
+        entry: mise exec -- oxfmt
+        types_or: [json, yaml, markdown]

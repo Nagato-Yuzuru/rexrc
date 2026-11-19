@@ -1,0 +1,7 @@
+# selene std: Rex runs Lua 5.1 with the full standard library plus the global
+# `rex`. Its members aren't listed, so Rex API changes never need edits here.
+---
+base: lua51
+globals:
+  rex:
+    any: true

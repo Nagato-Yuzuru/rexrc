@@ -1,0 +1,20 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended", "helpers:pinGitHubActionDigests"],
+  "minimumReleaseAge": "7 days",
+  "mise": {
+    "managerFilePatterns": ["/(^|/)mise\\.ci\\.toml$/"]
+  },
+  "packageRules": [
+    {
+      "matchManagers": ["github-actions"],
+      "groupName": "GitHub Actions"
+    },
+    {
+      "description": "Rex's config runs on Lua 5.1",
+      "matchManagers": ["mise"],
+      "matchDepNames": ["lua"],
+      "allowedVersions": "/^5\\.1\\./"
+    }
+  ]
+}
