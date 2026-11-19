@@ -1,7 +1,7 @@
 [tools]
 prek = "0.5.4"
 stylua = "2.5.2"
-"aqua:Kampfkarren/selene" = "0.31.0"
+"aqua:Kampfkarren/selene" = "0.32.0"
 taplo = "0.10.0"
 oxfmt = "0.71.0"
 ruff = "0.17.4"

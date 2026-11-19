@@ -3,21 +3,21 @@
 lockfile_version = 4
 
 [[tools."aqua:Kampfkarren/selene"]]
-version = "0.31.0"
+version = "0.32.0"
 backend = "aqua:Kampfkarren/selene"
-specifiers = ["0.31.0"]
+specifiers = ["0.32.0"]
 
 [tools."aqua:Kampfkarren/selene"."platforms.linux-x64"]
-checksum = "sha256:dac452422747999ec4919bbb8bb52992b66aae533b60022bf005669de8616671"
+checksum = "sha256:d3773393578580074386e69337d35b7acddfbaa9fc38964c07fa3e28436ade9b"
 checksum_source = "mise-versions"
-url = "https://github.com/Kampfkarren/selene/releases/download/0.31.0/selene-0.31.0-linux.zip"
-url_api = "https://api.github.com/repos/Kampfkarren/selene/releases/assets/425779991"
+url = "https://github.com/Kampfkarren/selene/releases/download/0.32.0/selene-0.32.0-linux.zip"
+url_api = "https://api.github.com/repos/Kampfkarren/selene/releases/assets/604285118"
 
 [tools."aqua:Kampfkarren/selene"."platforms.macos-arm64"]
-checksum = "sha256:67f644e57e14ccb74a0c272bc44af0dc7909d8bdff58e4e59bb3524717da5741"
+checksum = "sha256:d8aa4701530a81334836f9c5e3bf38b91f633d9ad88f4d15cf29f63fe8589dc0"
 checksum_source = "mise-versions"
-url = "https://github.com/Kampfkarren/selene/releases/download/0.31.0/selene-0.31.0-macos.zip"
-url_api = "https://api.github.com/repos/Kampfkarren/selene/releases/assets/425780014"
+url = "https://github.com/Kampfkarren/selene/releases/download/0.32.0/selene-0.32.0-macos.zip"
+url_api = "https://api.github.com/repos/Kampfkarren/selene/releases/assets/604285189"
 
 [[tools.jactionlint]]
 version = "2.5.0"
