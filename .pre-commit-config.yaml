@@ -1,6 +1,8 @@
 # Hooks run by prek; mise.toml pins every tool they call.
 #   mise run setup-hooks   install the git hook (once per clone)
 #   mise run lint          run every hook over the whole repo
+# mise lock writes .mise/locks and checks it by digest, so no hook may reformat it.
+exclude: ^\.mise/locks/
 repos:
   - repo: builtin
     hooks:
