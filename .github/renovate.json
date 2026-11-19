@@ -15,6 +15,24 @@
       "matchManagers": ["mise"],
       "matchDepNames": ["lua"],
       "allowedVersions": "/^5\\.1\\./"
+    },
+    {
+      "description": "One PR bumps every workflow's mise pin together",
+      "matchDepNames": ["jdx/mise"],
+      "groupName": "mise"
+    }
+  ],
+  "customManagers": [
+    {
+      "description": "The mise version CI installs, pinned in mise-action's version input",
+      "customType": "regex",
+      "managerFilePatterns": ["/^\\.github/workflows/.+\\.ya?ml$/"],
+      "matchStrings": [
+        "jdx/mise-action@\\S+ # \\S+\\n\\s+with:\\n\\s+version: (?<currentValue>\\S+)"
+      ],
+      "datasourceTemplate": "github-releases",
+      "depNameTemplate": "jdx/mise",
+      "extractVersionTemplate": "^v(?<version>.+)$"
     }
   ]
 }
