@@ -1,5 +1,5 @@
 [tools]
-prek = "0.5.4"
+prek = "0.5.10"
 stylua = "2.5.2"
 "aqua:Kampfkarren/selene" = "0.31.0"
 taplo = "0.10.0"
