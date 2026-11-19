@@ -177,6 +177,36 @@ def test_layout_picker_esc(win: Window) -> None:
         raise Failure("Esc changed the layout")
 
 
+def contains(tree: Any, subtree: Any) -> bool:
+    return tree == subtree or (isinstance(tree, tuple) and (contains(tree[2], subtree) or contains(tree[3], subtree)))
+
+
+# The block argument skips the picker, which would ask the user's apps.
+def test_join_from_other_window(win: Window) -> None:
+    other = Window()
+    try:
+        win.do("pane_join", f"block={other.first}")
+    except Failure:
+        other.close()
+        raise
+    # Its only pane left, so Rex closed the other window.
+    if not contains(shape(win.tiled()), ("vertical", 0.5, win.first, other.first)):
+        raise Failure(f"the joined pane isn't below the focused one: {shape(win.tiled())}")
+    close_block(other.first)
+
+
+def test_send_to_other_window(win: Window) -> None:
+    other = Window()
+    try:
+        other.do("pane_send", f"anchor={win.first}")
+    except Failure:
+        other.close()
+        raise
+    if not contains(shape(win.tiled()), ("vertical", 0.5, win.first, other.first)):
+        raise Failure(f"the sent pane isn't below the anchor: {shape(win.tiled())}")
+    close_block(other.first)
+
+
 TESTS = [
     test_popup_command,
     test_popup_quick_failure,
@@ -185,6 +215,8 @@ TESTS = [
     test_layout_select,
     test_layout_picker_esc,
     test_layout_picker,
+    test_join_from_other_window,
+    test_send_to_other_window,
 ]
 
 

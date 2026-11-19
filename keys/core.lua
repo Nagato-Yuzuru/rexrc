@@ -23,7 +23,6 @@ bind("ctrl+l", "pane.focus.right")
 bind("z", "pane.zoom")
 bind("shift+=", "pane.zoom")
 bind("=", "pane.balance")
-bind("shift+2", "pane.move_to_tab") -- @  join-pane
 bind("shift+1", "pane.move_to_new_tab") -- !  break-pane
 
 -- Tabs (tmux windows)
