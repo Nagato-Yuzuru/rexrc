@@ -20,26 +20,6 @@ function M.cwd(block_id)
 	return (path:gsub("%%(%x%x)", function(hex) return string.char(tonumber(hex, 16)) end))
 end
 
--- The terminal's foreground process name (zsh, ssh, nvim, ...), or nil.
-function M.foreground(block_id)
-	local result = rex.block.call(M.CREATOR, "process", { block_id = block_id })
-	return result and result.foreground and result.foreground.name
-end
-
--- Whether a full-screen program has switched the terminal to the alternate
--- screen. It's tracked by the terminal itself, so it holds across ssh.
-local ALT_SCREEN = { [47] = true, [1047] = true, [1049] = true }
-
-function M.alt_screen(block_id)
-	local result = rex.block.call(M.CREATOR, "modes", { block_id = block_id })
-	for _, mode in ipairs((result and result.modes) or {}) do
-		if ALT_SCREEN[mode.number] and mode.set then
-			return true
-		end
-	end
-	return false
-end
-
 -- The last n non-blank lines on the terminal's screen, trailing spaces removed.
 function M.tail(block_id, n)
 	local result = rex.block.call(M.CREATOR, "format", { block_id = block_id, format = "text", trim = true })
