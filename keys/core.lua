@@ -43,5 +43,4 @@ bind("shift+4", "session.rename") -- $
 
 -- Misc
 bind("shift+;", "client.palette.toggle") -- :
-bind("/", "client.find.open")
 bind("r", "client.config.reload")
