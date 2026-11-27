@@ -147,6 +147,23 @@ def test_scratch(win: Window) -> None:
     wait(lambda: not win.floats(), "the scratch shell to close")
 
 
+def test_scratch_follows_to_other_window(win: Window) -> None:
+    win.do("scratch_toggle")
+    scratch = wait(lambda: win.float_labeled("scratch"), "the scratch to open")
+    other = Window()
+    try:
+        other.split()
+        tiled = shape(other.tiled())
+        other.do("scratch_toggle")
+        wait(lambda: other.float_labeled("scratch") == scratch, "the scratch to move to the other window")
+        wait(lambda: not win.floats(), "the scratch's old layer to go")
+        wait(lambda: [lbl for _, lbl, _ in other.floats()] == ["scratch"], "the placeholder to close")
+        if shape(other.tiled()) != tiled:
+            raise Failure(f"floating the scratch changed the tiled panes: {shape(other.tiled())}")
+    finally:
+        other.close()
+
+
 def test_layout_select(win: Window) -> None:
     win.do("layout_select", "name=even-vertical")
     got = shape(win.tiled())
@@ -212,6 +229,7 @@ TESTS = [
     test_popup_quick_failure,
     test_popup_empty_opens_shell,
     test_scratch,
+    test_scratch_follows_to_other_window,
     test_layout_select,
     test_layout_picker_esc,
     test_layout_picker,
