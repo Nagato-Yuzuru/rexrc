@@ -59,9 +59,6 @@ rex.action({
 				focus = true,
 			}))
 		elseif scratch.window == nil or scratch.window.window_id ~= window.window_id then
-			if scratch.window then
-				view.check(rex.session.detach_block({ block_id = scratch.block_id }))
-			end
 			float.place(scratch.block_id, window, scratch.layer and scratch.layer.bounds or float.centered(SIZE))
 		elseif scratch.layer.state ~= "minimized" and inside then
 			view.check(rex.session.set_layer_state({ layer_id = scratch.layer.layer_id, state = "minimized" }))
