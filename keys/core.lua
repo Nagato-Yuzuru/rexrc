@@ -41,6 +41,10 @@ bind("s", "session.switch")
 bind("ctrl+f", "session.switch")
 bind("shift+4", "session.rename") -- $
 
+-- Scroll to the previous / next shell prompt. Needs the shell to mark its prompts.
+bind("shift+[", "client.prompt.previous") -- {
+bind("shift+]", "client.prompt.next") -- }
+
 -- Misc
 bind("shift+;", "client.palette.toggle") -- :
 bind("r", "client.config.reload")
